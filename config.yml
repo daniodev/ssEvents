@@ -1,0 +1,102 @@
+# ssEvents CONFIG.YML made by danio#7394
+# PAYMENT PLUGIN
+
+# NOTE YOU SHOULD CONNECT LUCKPERMS TO MY_SQL IF YOU HAVE A BUNGEECORD SERVER
+# AFTER YOU PUT THIS PLUGIN INTO JOUR PLUGINS FOLDER, YOU SHOULD SETUP THIS FILE FIRST TO JOIN THE SERVER!!
+
+#This value ("staff-perm") is the most important value of the plugin, as it distinguishes
+#the player from the suspect, chia has this permission is a staffer so all the actions of the plugin called staff-location, staffmessages and so on,
+#this value is not delete or disable it because otherwise the plugin would not make sense because remember that it is a join event for rooms of ss
+staff-perms: "ssEvents.staff"
+
+Messages:
+  no-perms: "Unknow command."
+  ReloadMSG: "&aPlugin reloaded"
+  args0: "&cSpecify an action: 'rl, reload'"
+  tooMuchArgs: "&cToo much args"
+
+#This will teleport the staffer to the indicated x,y,z.
+#WARNING this can conflict with other plugins that use this feature, make sure you disable them
+teleport-staff-to-xyz: false #Find your coordinates and change this value to true
+StaffJoinLocation:
+  x: "8.5"
+  y: "0"
+  z: "11.5"
+
+#This will teleport the suspect to the indicated x,y,z.
+#WARNING this can conflict with other plugins that use this feature, make sure you disable them
+teleport-suspect-to-xyz: false #Find your coordinates and change this value to true
+SuspectJoinLocation:
+  x: "8.5"
+  y: "0"
+  z: "6.5"
+
+#These are the messages that will be sent as an left event instead of the boring minecraft default message
+#the placeholders that you can use here are [player] which indicates the player who just joined the server
+join-messages-on: true
+JoinMessages:
+  StaffJoin: "&bThe staffer [player] joined the server"
+  SuspectJoin: "&c[player] joined under hack control"
+
+#These are the messages that will be sent as an abandonment event instead of the boring minecraft default message
+#the placeholders that you can use here are [player] which indicates the player who just left the server
+leave-messages-on: true
+LeaveMessages:
+  StaffLeave: "&bThe staffer [player] left the server"
+  SuspectLeave: "&c[player] left the server under hack control"
+
+
+# Place Holder API for Commands: [player] that replace the name of the player that joins
+#There you can execute commands from the console, remember: don't put this in the commands: ""
+#The staffer is different from the suspect by the:"staff-perms", who have the prefix is a staffer for the plugin
+Commands:
+  Staffer:
+    JoinEvent:
+      - say this is an example command
+      - give [player] dirt 30
+    QuitEvent:
+      - #Your Commands here
+  Suspect:
+    JoinEvent:
+      - #Your Commands here
+    QuitEvent:
+      - #Your Commands here
+
+
+LUCKPERMS-IMPLEMENTATION: true
+
+#The staffer is different from the suspect by the:"staff-perms", who have the prefix is a staffer for the plugin
+# Only if lp-add-group is true the group will be added
+# The group will automatically be added when the players join and removed when they quits the server
+lp-add-group: true
+Group:
+  staff-group: "staffer"
+  suspect-group: "suspect"
+
+
+#The staffer is different from the suspect by the:"staff-perms", who have the prefix is a staffer for the plugin
+#Only if "lp-change-prefix" is true the prefix will be changed!
+# The prefix will automatically be added when the players join and removed when they quits the server
+lp-change-prefix: true
+Prefix:
+  staff-prefix: "&b&lSTAFFER&f "
+  StaffPriority: 200
+  suspect-prefix: "&c&lSUSPECT&f "
+  SuspectPriority: 200
+
+
+#The staffer is different from the suspect by the:"staff-perms", who have the prefix is a staffer for the plugin
+# The permissions will automatically be added and removed when the players joins the server
+lp-add-permissions: true
+lp-remove-permssions: true
+Permission:
+  Add:
+    Staff:
+      - my.permission
+    Suspect:
+      - my.permission
+  Remove:
+    Staff:
+      - my.permission
+    Suspect:
+      - my.permission

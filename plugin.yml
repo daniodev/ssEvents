@@ -1,0 +1,12 @@
+name: ssEvents
+version: 1.1
+main: net.danio
+api-version: 1.19
+authors: [ ddanio ]
+description: ssEvents plugin made by danio#7394
+softdepend: [LuckPerms]
+
+commands:
+  ssevents:
+    description: command
+    aliases: [ sse ]
